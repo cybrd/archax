@@ -1,0 +1,79 @@
+1. Explain why `{ a: 1 } === { a: 1 }` is `false` in JavaScript.
+
+Rephrasing this to:
+const x = {a: 1};
+const y = {a: 1};
+
+x === y is false, because the property x.a is a different reference compared to y.a
+
+https://iq.js.org/questions/javascript/why-does-it-return-false-when-comparing-two-similar-objects-in-javascript
+
+2. Describe the runtime difference(s) between `for await (const a
+of [p1, p2, p3]) { ... }` vs `[p1, p2, p3].forEach(async (p) {
+await p })`.
+
+for await (const a of [p1, p2, p3]) { ... }
+this will wait for p1 block to finish, then run p2 block, then run p3 block
+
+[p1, p2, p3].forEach(async (p) { await p })
+this will run p1, p2, p3 in sync but still properly awaits inside the block (if you have multiple await)
+
+3. Describe good use cases for using a JavaScript `Map` instead of
+   an `object`.
+
+Map remembers the original insertion order of the keys
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
+
+4. Describe at least one way to substitute a local, unpublished
+   version of a JavaScript library in place of a another version that
+   is already published in an NPM registry.
+
+you can install directly from a github repo:
+npm install ${url}
+
+5. Write a script that will encode the following information
+   sequentially in a JavaScript `Buffer`. No need to include field
+   metadata, assume the consumer/decoder is aware of the offsets to
+   use and can parse enum values. Make sure to select data types that
+   are optimized for payload size, but can adequately express all
+   possible values given the length and data type: `symbol`: utf-8
+   string up to 4 characters, `price`: unsigned 64-bit integer,
+   `quantity`: unsigned 64-bit integer, `side`: enum buy | sell,
+   `type`: enum limit | market
+
+See: src/5.ts
+
+6. Write a script that will decode the `Buffer` you generated from
+   question 5, and return an object with fields as described in the
+   question.
+
+See: src/6.ts
+
+7. Write a function that will employ a divide-and-conquer algorithm
+   that will sort an array of objects by their `dateHired` (native JS
+   `Date` object) property in descending order. All items in the array
+   will be an object which has a `dateHired` property which is a valid
+   `Date` object. You cannot use built-in array sorting methods and
+   3rd-party libraries, but manipulating the `dateHired` property with
+   built-in Node.js/ES6+ functions is allowed.
+
+See: src/7.ts
+
+8. Write a TypeScript variable declaration for a variable `a` that
+   will guarantee that it is a property name or key of object `b` at
+   compile-time.
+
+See: src/8.ts
+
+9. Expain the differences between `object`s and `enum`s in
+   TypeScript.
+
+When using 'enum', you choose 1 value
+When using 'object', you use all
+
+10. Write a `jest` mock of method `fetchAllRecords` that will
+    return a `Promise` that resolves immediately to array `[1, 2,
+3]` that belongs to class `Employee`.
+
+See: src/10.test.ts
